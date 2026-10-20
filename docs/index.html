@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Website Screenshot API &amp; URL to PDF API - bulk, full page</title>
+<meta name="description" content="Website screenshot API and URL to PDF API on headless Chromium. Full page, bulk, HTML to PDF. $0.001 per screenshot, $0.004 per PDF, failed pages free. curl, Node and Python examples.">
+<link rel="canonical" href="https://jjlarsensa.github.io/website-screenshot-api/">
+<style>
+body{font:16px/1.6 system-ui,sans-serif;max-width:800px;margin:2rem auto;padding:0 1rem;color:#222}
+pre{background:#f4f4f4;padding:1rem;overflow:auto;border-radius:6px}
+code{background:#f4f4f4;padding:0 .25rem}
+table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.4rem .8rem;text-align:left}
+a.btn{display:inline-block;background:#0a58ca;color:#fff;padding:.6rem 1.2rem;border-radius:6px;text-decoration:none}
+</style>
+</head>
+<body>
+<h1>Website Screenshot API &amp; URL to PDF API</h1>
+<p>A <strong>website screenshot API</strong> and <strong>URL to PDF API</strong> on headless Chromium. Send URLs or raw HTML, get full-page screenshots (PNG/JPEG) and PDFs. Bulk, pay per result, failed pages are never billed.</p>
+<p><a class="btn" href="https://apify.com/pennydata/shot-pdf">Try it on Apify: pennydata/shot-pdf</a></p>
+
+<h2>Features</h2>
+<ul>
+<li>Full-page website screenshot or viewport only</li>
+<li>URL to PDF (A4, Letter, landscape, print backgrounds)</li>
+<li>HTML to PDF from inline HTML</li>
+<li>Height limit, clip region, hide sticky headers and cookie bars, lazy-load scrolling</li>
+<li>Many URLs per call; failed URLs return an error row and cost nothing</li>
+</ul>
+
+<h2>Pricing</h2>
+<table>
+<tr><th>Output</th><th>Price (Free plan)</th></tr>
+<tr><td>Screenshot captured</td><td>$0.001 each ($1 / 1,000)</td></tr>
+<tr><td>PDF rendered</td><td>$0.004 each ($4 / 1,000)</td></tr>
+</table>
+<p>Paid Apify plans get lower per-event prices. The <a href="https://apify.com/pennydata/shot-pdf">actor page</a> is the source of truth.</p>
+
+<h2>curl: website screenshot API</h2>
+<pre>export APIFY_TOKEN=your_token_here
+curl -X POST "https://api.apify.com/v2/acts/pennydata~shot-pdf/run-sync-get-dataset-items?token=$APIFY_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{"urls":[{"url":"https://example.com"}],"mode":"screenshot","fullPage":true}'</pre>
+
+<h2>curl: URL to PDF API</h2>
+<pre>curl -X POST "https://api.apify.com/v2/acts/pennydata~shot-pdf/run-sync-get-dataset-items?token=$APIFY_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{"urls":[{"url":"https://en.wikipedia.org/wiki/Web_scraping"}],"mode":"pdf","pdfFormat":"A4"}'</pre>
+
+<h2>Node.js (apify-client)</h2>
+<pre>import { ApifyClient } from 'apify-client';
+
+const client = new ApifyClient({ token: process.env.APIFY_TOKEN });
+const run = await client.actor('pennydata/shot-pdf').call({
+  urls: [{ url: 'https://example.com' }],
+  mode: 'pdf',
+});
+const { items } = await client.dataset(run.defaultDatasetId).listItems();
+console.log(items);</pre>
+
+<h2>Python</h2>
+<pre>import os, requests
+
+resp = requests.post(
+    "https://api.apify.com/v2/acts/pennydata~shot-pdf/run-sync-get-dataset-items",
+    params={"token": os.environ["APIFY_TOKEN"]},
+    json={"urls": [{"url": "https://example.com"}], "mode": "screenshot"},
+    timeout=300,
+)
+print(resp.json())</pre>
+
+<h2>Input options</h2>
+<p><code>urls</code>, <code>htmlDocuments</code>, <code>mode</code> (screenshot / pdf / both), <code>format</code>, <code>fullPage</code>, <code>maxHeight</code>, <code>clip</code>, <code>hideFixedElements</code>, <code>scrollTimeoutSecs</code>, <code>viewportWidth</code>, <code>viewportHeight</code>, <code>waitUntil</code>, <code>delayMs</code>, <code>waitForSelector</code>, <code>pdfFormat</code>, <code>pdfLandscape</code>, <code>pdfPrintBackground</code>. See the <a href="https://github.com/jjlarsensa/website-screenshot-api#input-reference">README</a> and the <a href="https://apify.com/pennydata/shot-pdf/input-schema">full schema</a>.</p>
+
+<h2>About</h2>
+<p>Built and maintained with an AI-assisted workflow (Claude), operated by the owner of the jjlarsensa GitHub account. MIT licensed. <a href="https://github.com/jjlarsensa/website-screenshot-api">Source on GitHub</a>.</p>
+</body>
+</html>
