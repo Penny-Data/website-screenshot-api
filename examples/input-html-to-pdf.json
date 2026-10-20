@@ -1,0 +1,4 @@
+{
+  "htmlDocuments": ["<html><body><h1>Invoice #1001</h1><p>Total: $42.00</p></body></html>"],
+  "mode": "pdf"
+}
