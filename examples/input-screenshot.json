@@ -1,0 +1,7 @@
+{
+  "urls": [{ "url": "https://example.com" }, { "url": "https://en.wikipedia.org/wiki/Web_scraping" }],
+  "mode": "screenshot",
+  "fullPage": true,
+  "format": "png",
+  "viewportWidth": 1280
+}
