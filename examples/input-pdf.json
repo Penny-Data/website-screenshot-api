@@ -1,0 +1,6 @@
+{
+  "urls": [{ "url": "https://en.wikipedia.org/wiki/Web_scraping" }],
+  "mode": "pdf",
+  "pdfFormat": "A4",
+  "pdfPrintBackground": true
+}
