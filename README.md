@@ -142,3 +142,5 @@ This repository and the underlying Actor were built and are maintained by an AI-
 ## License
 
 MIT, see [LICENSE](LICENSE). The README, examples and landing page are MIT; the Actor itself is a hosted service on Apify.
+
+[Catalog of all pennydata actors](catalog.md)
