@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>URL to PDF API on Apify: convert web pages to PDF with one HTTP call</title>
+<meta name="description" content="Convert any public URL (or an HTML string) to PDF through the Apify API with a single curl call. Input example, output, and per-PDF price.">
+<link rel="canonical" href="https://jjlarsensa.github.io/website-screenshot-api/url-to-pdf-api/">
+<style>
+body{font:16px/1.6 system-ui,sans-serif;max-width:800px;margin:2rem auto;padding:0 1rem;color:#222}
+pre{background:#f4f4f4;padding:1rem;overflow:auto;border-radius:6px}
+code{background:#f4f4f4;padding:0 .25rem}
+table{border-collapse:collapse}td,th{border:1px solid #ccc;padding:.4rem .8rem;text-align:left}
+a.btn{display:inline-block;background:#0a58ca;color:#fff;padding:.6rem 1.2rem;border-radius:6px;text-decoration:none}
+</style>
+</head>
+<body>
+<h1>URL to PDF API on Apify: convert web pages to PDF with one HTTP call</h1>
+<p><strong>Disclosure:</strong> I publish <a href="https://apify.com/pennydata/shot-pdf">pennydata/shot-pdf</a>, so this is a vendor page. It was written with AI assistance (Claude) and is not affiliated with Apify.</p>
+<h2>What it is</h2>
+<p>pennydata/shot-pdf is an Apify actor that renders public web pages (or HTML you send) in headless Chromium and returns a PDF, a PNG/JPEG screenshot, or both. You call it over the Apify REST API, so it fits cron jobs, backends and no-code tools.</p>
+<h2>Call it with curl</h2>
+<pre>export APIFY_TOKEN=your_token_here
+curl -X POST &quot;https://api.apify.com/v2/acts/pennydata~shot-pdf/run-sync-get-dataset-items?token=$APIFY_TOKEN&quot; \
+  -H &#x27;Content-Type: application/json&#x27; \
+  -d &#x27;{&quot;urls&quot;: [{&quot;url&quot;: &quot;https://example.com&quot;}], &quot;mode&quot;: &quot;pdf&quot;, &quot;pdfFormat&quot;: &quot;A4&quot;, &quot;pdfPrintBackground&quot;: true}&#x27;</pre>
+<h2>Input example</h2>
+<pre>{
+  &quot;urls&quot;: [
+    {
+      &quot;url&quot;: &quot;https://example.com&quot;
+    }
+  ],
+  &quot;mode&quot;: &quot;pdf&quot;,
+  &quot;pdfFormat&quot;: &quot;A4&quot;,
+  &quot;pdfPrintBackground&quot;: true
+}</pre>
+<p>Other input fields include <code>htmlDocuments</code> (HTML string to PDF), <code>fullPage</code>, <code>waitUntil</code>, <code>delayMs</code> and <code>hideSelectors</code>.</p>
+<h2>Output</h2>
+<p>Each dataset item has the input URL and a link to the stored PDF or image; failed URLs return an error row. Run a small sample first and check the fields before wiring it into production.</p>
+<h2>Price per event</h2>
+<table><tr><th>Event</th><th>Price</th></tr><tr><td>PDF rendered</td><td>$0.004</td></tr><tr><td>Screenshot captured</td><td>$0.0008</td></tr><tr><td>Mode <code>both</code></td><td>both events ($0.0048)</td></tr></table>
+<p>Those are the Free-plan prices; paid Apify plans get lower tiers. Events are charged per PDF or screenshot produced; check the Pricing tab for exact terms. Prices are pay-per-event and can change; the <a href="https://apify.com/pennydata/shot-pdf">actor page</a> is the source of truth. An Apify account is free and includes monthly platform credit.</p>
+<p><a class="btn" href="https://apify.com/pennydata/shot-pdf">Open pennydata/shot-pdf on Apify</a></p>
+<p><a href="../">Back to the main page</a></p>
+</body>
+</html>
